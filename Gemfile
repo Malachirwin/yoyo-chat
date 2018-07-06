@@ -11,10 +11,10 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'slim'
 gem 'slim-rails'
-gem 'rspec-rails'
 gem 'bcrypt',         '3.1.12'
 
 group :test do
+  gem 'rspec-rails'
   gem 'rspec'
 end
 group :development, :test do
