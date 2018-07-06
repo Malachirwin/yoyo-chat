@@ -1,11 +1,11 @@
 header class="navbar navbar-fixed-top navbar-inverse"
   div class="container"
-    = link_to "sample app", '#', id: "logo"
+    = link_to "sample app", root_path, id: "logo"
     nav
       ul class="nav navbar-nav navbar-right"
         li
-          a href="./../static_pages/home" Home
+          a href=root_path Home
         li
-          a href="./../static_pages/help" Help
+          a href=help_path Help
         li
           a href="#" Log in
