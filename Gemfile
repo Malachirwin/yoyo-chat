@@ -9,6 +9,20 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 
+gem 'sinatra'
+gem 'capybara'
+gem 'sinatra-contrib'
+gem 'rack'
+gem 'launchy'
+gem "pusher"
+
+group :test do
+  gem 'rspec'
+  gem 'pry'
+  gem 'capybara-selenium'
+  gem "selenium-webdriver"
+  gem 'chromedriver-helper'
+end
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
