@@ -26,5 +26,28 @@ RSpec.describe "Users", type: :system do
       expect(current_path).to eq "/"
       expect(page).to have_text 'Log in'
     end
+
+    # it "login with remembering", js: true do
+    #   user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
+    #   fill_in 'session[email]', with: "malachi@theirwins.ws"
+    #   fill_in 'session[password]', with: "123456"
+    #   fill_in 'session[remember_me]', with: '1'
+    #   page.click_button 'Log in'
+    #   expect(!cookies[:remember_token].empty?)
+    # end
+    #
+    # it "login without remembering" do
+    #   user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
+    #   fill_in 'session[email]', with: "malachi@theirwins.ws"
+    #   fill_in 'session[password]', with: "123456"
+    #   fill_in 'session[remember_me]', with: '1'
+    #   page.click_button 'Log in'
+    #   visit "/login"
+    #   fill_in 'session[email]', with: "malachi@theirwins.ws"
+    #   fill_in 'session[password]', with: "123456"
+    #   fill_in page.find('#session_remember_me'), with: '0'
+    #   page.click_button 'Log in'
+    #   expect(cookies[:remember_token].empty?)
+    # end
   end
 end
