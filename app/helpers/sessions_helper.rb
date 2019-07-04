@@ -33,8 +33,26 @@ module SessionsHelper
 
   def redirect_if_not_login
     if session[:user_id] == nil
-      redirect_to root_url
+      flash[:danger] = "Please Login First."
+      redirect_to login_path
     end
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user?(@user)
+      unless current_user.admin?
+        redirect_to edit_user_path(current_user)
+      end
+    end
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 
   def remember(user)
