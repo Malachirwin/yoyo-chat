@@ -11,8 +11,8 @@ RSpec.describe "Users", type: :system do
 
     before do
       driven_by(:rack_test)
-      @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
-      @other_user = User.create(name: 'Bob', email: 'bob@theirwins.ws', password: '123456', password_confirmation: '123456')
+      @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
+      @other_user = User.create(name: 'Bob', email: 'bob@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
 
     end
 

@@ -23,7 +23,7 @@ RSpec.describe "Users", type: :system do
 
     it 'valid login and logout' do
       expect(page).to have_text 'Log in'
-      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
+      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
       fill_in 'session[email]', with: "malachi@theirwins.ws"
       fill_in 'session[password]', with: "123456"
       page.click_button 'Log in'
@@ -59,8 +59,8 @@ RSpec.describe "Users", type: :system do
   end
   describe '/users/index' do
     before do
-      @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', admin: true)
-      @other_user = User.create(name: 'Jimmy', email: 'jimmy@hiswork.com', password: '123456', password_confirmation: '123456')
+      @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', admin: true, activated: true, activated_at: Time.zone.now)
+      @other_user = User.create(name: 'Jimmy', email: 'jimmy@hiswork.com', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
       driven_by(:rack_test)
       visit "/login"
     end
@@ -69,8 +69,8 @@ RSpec.describe "Users", type: :system do
       visit '/users'
       expect(page).to have_text "Please Login First."
       visit '/login'
-      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
-      user = User.create(name: 'Jimmy', email: 'jimmy@theirwins.ws', password: '123456', password_confirmation: '123456')
+      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
+      User.create(name: 'Jimmy', email: 'jimmy@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
 
       fill_in 'session[email]', with: "malachi@theirwins.ws"
       fill_in 'session[password]', with: "123456"
@@ -83,8 +83,8 @@ RSpec.describe "Users", type: :system do
 
     it "index including pagination" do
       visit '/login'
-      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456')
-      user = User.create(name: 'Jimmy', email: 'jimmy@theirwins.ws', password: '123456', password_confirmation: '123456')
+      user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
+      User.create(name: 'Jimmy', email: 'jimmy@theirwins.ws', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
 
       fill_in 'session[email]', with: "malachi@theirwins.ws"
       fill_in 'session[password]', with: "123456"

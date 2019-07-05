@@ -4,6 +4,26 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+  config.consider_all_requests_local = true
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'no-reply@sampleapp.com'}
+  # mailer previews
+  config.action_mailer.show_previews = true
+
+  # If you're using RSpec make sure to add the link changing where the previews path is.
+  config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
+  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :test
+  host = 'localhost:3000' # Don't use this literally; use your local dev host instead
+  # Use this on the cloud IDE.
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
   config.cache_classes = false
 
   # Do not eager load code on boot.

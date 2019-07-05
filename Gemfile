@@ -15,11 +15,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'slim'
 gem 'slim-rails'
 gem 'bcrypt',         '3.1.12'
-
-group :development, :test do
-  gem 'sqlite3', '1.3.13'
-  gem 'byebug',  '9.0.6', platform: :mri
-end
+gem 'pry'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
@@ -32,7 +28,7 @@ group :test do
   gem 'rspec'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'rails-controller-testing', '1.0.2'
   gem 'minitest',                 '5.10.3'
   gem 'minitest-reporters',       '1.1.14'

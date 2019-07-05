@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       if @searched_users == []
         flash[:danger] = "No users where found with that name or last name"
       end
-      @users = User.paginate(page: params[:page])
+      @users = User.where(activated: true).order(:name).paginate(page: params[:page])
     end
   end
 
@@ -32,14 +32,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url unless @user.activated?
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   before do
-    @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', admin: true)
-    @other_user = User.create(name: 'Jimmy', email: 'jimmy@hiswork.com', password: '123456', password_confirmation: '123456')
+    @user = User.create(name: 'Malachi', email: 'malachi@theirwins.ws', password: '123456', password_confirmation: '123456', admin: true, activated: true, activated_at: Time.zone.now)
+    @other_user = User.create(name: 'Jimmy', email: 'jimmy@hiswork.com', password: '123456', password_confirmation: '123456', activated: true, activated_at: Time.zone.now)
   end
 
   it "returns http success" do

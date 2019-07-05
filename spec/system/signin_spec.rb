@@ -4,6 +4,7 @@ RSpec.describe "Users", type: :system do
   describe '/signin' do
     before do
       driven_by(:rack_test)
+      ActionMailer::Base.deliveries.clear
       visit "/signup"
     end
 
@@ -19,14 +20,24 @@ RSpec.describe "Users", type: :system do
     end
 
     it 'valid signup' do
-      before_count = User.count
       fill_in 'user[name]', with: "Malachi"
       fill_in 'user[email]', with: "malachi@theirwins.ws"
       fill_in 'user[password]', with: "123456"
       fill_in 'user[password_confirmation]', with: "123456"
       page.click_on 'Create my account'
-      expect(page).to have_text 'Welcome to the Sample App!'
-      expect(before_count + 1).to eq User.count
+      expect(ActionMailer::Base.deliveries.size).to eq 1
+      user = User.all.last
+      user.send(:create_activation_digest)
+      user.save!
+      expect(!user.activated?)
+      visit edit_account_activation_path("invalid-token", email: user.email)
+      expect(page).to have_text "Invalid activation link"
+      visit edit_account_activation_path(user.activation_token, email: 'wrong')
+      expect(page).to have_text "Invalid activation link"
+      visit edit_account_activation_path(user.activation_token, email: user.email)
+      expect(page).to have_text "Account activated!"
+      expect(user.reload.activated?)
+      expect(current_path).to eq user_path(user)
     end
   end
 end
