@@ -31,3 +31,11 @@ User.create!(name:  "Example User",
                activated: true,
                activated_at: Time.zone.now)
 end
+users = User.order(:created_at).take(6)
+users.each do |user|
+  50.times do
+    content = Faker::Movies::PrincessBride.quote
+    title = "Princess Bride Quotes"
+    user.microposts.create!(title: title, content: content)
+  end
+end
