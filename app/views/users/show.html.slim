@@ -8,6 +8,7 @@ div class="row"
       h1 = @user.email
       h5 = "Created At: " + @user.created_at.to_s
       h5 = "Updated At: " + @user.updated_at.to_s
+      h5 = pluralize(@user.microposts.count, "micropost")
   div class="col-md-8"
     - if @user.microposts.any?
       h3
@@ -15,7 +16,5 @@ div class="row"
         = @user.microposts.count
         | )
       ol class="microposts"
-        / - @microposts.each do |micropost|
-        /   == render 'micropost', micropost: micropost
         == render @microposts
       = will_paginate @microposts

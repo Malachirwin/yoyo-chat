@@ -11,6 +11,11 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_secure_password
+
+  def feed
+    microposts
+  end
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
