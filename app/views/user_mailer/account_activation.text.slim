@@ -1,5 +1,5 @@
 = "Hi #{@user.name},\n"
 
-= "Welcome to the Sample App!\nClick on the link below to activate your account:\n"
+= "Welcome to the YoYo Chat!\nClick on the link below to activate your account:\n"
 
 = edit_account_activation_url(@user.activation_token, email: @user.email)

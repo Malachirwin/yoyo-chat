@@ -8,7 +8,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq("Account activation")
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["no-reply@sampleapp.com"])
+      expect(mail.from).to eq(["no-reply@yoyo-chat.com"])
     end
 
     it "renders the body" do
@@ -24,7 +24,7 @@ RSpec.describe UserMailer, type: :mailer do
       mail = UserMailer.password_reset(user)
       expect(mail.subject).to eq("Password reset")
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["no-reply@sampleapp.com"])
+      expect(mail.from).to eq(["no-reply@yoyo-chat.com"])
     end
 
     it "renders the body" do

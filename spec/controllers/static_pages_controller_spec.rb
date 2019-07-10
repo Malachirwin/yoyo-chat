@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
   before do
-    @title = "Ruby on Rails Tutorial Sample App"
+    @title = "Ruby on Rails Tutorial YoYo Chat"
   end
 
   render_views

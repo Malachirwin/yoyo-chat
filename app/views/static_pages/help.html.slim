@@ -1,12 +1,14 @@
 - provide(:title, "Help")
 h1 Help
-p
-  ' Get help on the Ruby on Rails Tutorial at the
-  a[href="http://www.railstutorial.org/help"]
-    | Rails Tutorial help section
-  ' . To get help on this sample app, see the
-  a[href="http://www.railstutorial.org/book"]
-    em
-      | Ruby on Rails Tutorial
-    |  book
-  | .
+- if logged_in?
+  p To Make a post go to the home page and fill in the feilds
+  p
+    ' Edit your profile at
+    b Acount > Settings
+
+  p
+    ' View your profile at
+    b Acount > Profile
+- else
+  p To login click the login button
+  P To Sign up click the large sign up button on the home page
